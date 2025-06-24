@@ -1,0 +1,17 @@
+@startuml
+actor User
+User -> LoginController: POST /sign-up
+LoginController -> LoginService: registrarUsuario(request)
+LoginService -> UserRepository: findByEmail(request.email)
+alt Email ya existe
+    LoginService -> LoginController: throw EmailDuplicadoException
+else
+    LoginService -> AESUtil: encrypt(password)
+    LoginService -> JwtUtil: generateToken(email)
+    LoginService -> PhoneMapper: toEntityList(phones, user)
+    LoginService -> UserRepository: save(user)
+    LoginService -> SignUpRespDTO: construir respuesta
+    LoginService --> LoginController: retornar respuesta
+    LoginController --> User: ResponseEntity.ok(response)
+end
+@enduml

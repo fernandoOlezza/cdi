@@ -1,0 +1,40 @@
+
+@startuml
+package "com.exercice.cdi.controller" {
+  [LoginController] --> [LoginService]
+  [LoginController] --> [SignUpRequestDTO]
+  [LoginController] --> [SignUpRespDTO]
+  [LoginController] --> [LoginResponseDTO]
+}
+
+package "com.exercice.cdi.controller.dto" {
+  [SignUpRequestDTO] --> [PhoneDTO]
+  [LoginResponseDTO] --> [PhoneDTO]
+}
+
+package "com.exercice.cdi.repository.entity" {
+  [UserEntity] --> [PhoneEntity]
+}
+
+package "com.exercice.cdi.service" {
+  [LoginService] <|.. [LoginServiceImpl]
+}
+
+package "com.exercice.cdi.repository" {
+  [UserRepository]
+}
+
+package "com.exercice.cdi.util" {
+  [AESUtil]
+  [JwtUtil]
+  [PhoneMapper]
+}
+
+[LoginServiceImpl] --> [UserRepository]
+[LoginServiceImpl] --> [JwtUtil]
+[LoginServiceImpl] --> [AESUtil]
+[LoginServiceImpl] --> [PhoneMapper]
+[LoginServiceImpl] --> [UserEntity]
+[LoginServiceImpl] --> [SignUpRespDTO]
+[LoginServiceImpl] --> [LoginResponseDTO]
+@enduml
