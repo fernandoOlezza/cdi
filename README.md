@@ -53,6 +53,6 @@ Este proyecto es una API RESTful desarrollada con Spring Boot que permite el reg
 ## 🧩 Endpoints principales
 
 - POST /v1/bci/sign-up — Registro de usuario
-- POST /v1/bci/login?token=... — Autenticación con token
+- POST /v1/bci/login — Autenticación con token
 
 ---
