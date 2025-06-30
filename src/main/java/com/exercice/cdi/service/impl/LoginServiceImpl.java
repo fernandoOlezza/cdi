@@ -33,7 +33,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     UserEntity user = new UserEntity();
-    user.setName(request.getName());
+    user.setName(request.getName() == null? "": request.getName());
     user.setEmail(request.getEmail());
     user.setPassword(AESUtil.encrypt(request.getPassword()));
     user.setCreated(LocalDateTime.now());

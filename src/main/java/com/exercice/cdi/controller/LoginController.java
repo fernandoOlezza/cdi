@@ -23,8 +23,8 @@ public class LoginController {
     return ResponseEntity.ok(response);
   }
 
-  @GetMapping("/login")
-  public ResponseEntity<LoginResponseDTO> login(@RequestParam String token) throws Exception {
+  @PostMapping("/login")
+  public ResponseEntity<LoginResponseDTO> login(@RequestHeader String token) throws Exception {
     LoginResponseDTO response = loginService.realizarLogin(token);
     return ResponseEntity.ok(response);
   }
